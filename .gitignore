@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+
+# Runtime-generated assets and logs (keep .gitkeep placeholders only)
+My2DGameAIProject/logs/*.jsonl
+My2DGameAIProject/logs/*.log
+My2DGameAIProject/data/media_cache/*
+!My2DGameAIProject/data/media_cache/.gitkeep
+My2DGameAIProject/data/models/*
+!My2DGameAIProject/data/models/.gitkeep
+
+# DVC
+.dvc/cache/
+*.dvc
+
+# Godot build artifacts
+My2DGameAIProject/engine/.mono/
+My2DGameAIProject/engine/.godot/
+My2DGameAIProject/engine/export/
+
+# OS
+.DS_Store
+Thumbs.db
