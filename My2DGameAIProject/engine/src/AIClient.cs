@@ -268,6 +268,29 @@ public partial class AIClient : Node
         }
     }
 
+    // -------------------------------------------------------------------------
+    // Strongly-typed DTO helper (Step 5)
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Request a narrative beat and deserialise the response into a
+    /// <see cref="GameStateDTO"/> using <c>System.Text.Json</c>.
+    ///
+    /// All errors – network timeouts, non-2xx HTTP status codes, and JSON
+    /// deserialisation failures – are caught internally and result in a
+    /// <c>null</c> return value (consistent with the rest of <see cref="AIClient"/>).
+    /// No exceptions propagate to the caller.
+    /// </summary>
+    public async Task<GameStateDTO> RequestStoryDTO(
+        string playerInput,
+        string worldStateId = "00000",
+        float temperature = 0.72f,
+        int maxLen = 256)
+    {
+        string json = await RequestStory(playerInput, worldStateId, temperature, maxLen);
+        return GameStateDTO.FromJson(json);
+    }
+
     /// <summary>Issues a GET request to <paramref name="endpoint"/>.</summary>
     private async Task<string> GetAsync(string endpoint)
     {
